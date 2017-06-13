@@ -74,7 +74,7 @@ public class BasketServiceTest {
         //TODO
         final Basket basket = new Basket();
 
-        for(int i = 0; i>2; i++) {
+        for(int i = 5; i>10; i++) {
             basket.addItem(new BasketItem(i, productService.findBy(1)));
         }
     }
@@ -83,8 +83,7 @@ public class BasketServiceTest {
     public void shouldDecrementBasketItemQuantity() throws Exception {
         //TODO
         final Basket basket = new Basket();
-
-        for(int i = 2; i<0; i--) {
+        for(int i = 0; i>5; i--) {
             basket.addItem(new BasketItem(i, productService.findBy(1)));
         }
     }
@@ -93,12 +92,12 @@ public class BasketServiceTest {
     public void shouldDecrementBasketItemQuantityAndRemoveWhenQuantityZero() throws Exception {
         //TODO
 
-        Product product = new Product(11,"Oyuncak Kamyon",3);
+        Product araba = new Product(11,"Araba",1500000);
         Basket basket = new Basket();
-        BasketItem basketItem = new BasketItem(2,product);
+        BasketItem basketItem = new BasketItem(2,araba);
         basket.addItem(basketItem);
         BasketService basketService = new BasketService();
-        basketService.decrementQuantity(product,1);
+        basketService.decrementQuantity(araba,1);
 
     }
 
@@ -112,13 +111,13 @@ public class BasketServiceTest {
     public void shouldCalculateOneProductPrice() throws Exception {
         //TODO sepette 1 urun varken price hesaplanmali
         Basket basket = new Basket();
-        Product product = new Product(10,"Elma",3);
+        Product product = new Product(10,"Elma",90);
         BasketItem basketItem = new BasketItem(3,product);
 
         basket.addItem(basketItem);
 
 
-        assertTrue(basket.calculateBasketPrice()==9);
+        assertTrue(basket.calculateBasketPrice()==90);
 
 
 
@@ -129,18 +128,16 @@ public class BasketServiceTest {
         //TODO sepette coklu urun varken price hesaplanmali
 
         Basket basket = new Basket();
-        Product product = new Product(11,"Soğan",2);
-        Product product2 = new Product(12,"Kivi",2);
+        Product telefon = new Product(11,"Telefon",1500);
+        BasketItem telefonItem = new BasketItem(2,telefon);
+        basket.addItem(telefonItem);
 
-        BasketItem basketItem = new BasketItem(2,product);
-        BasketItem basketItem2 = new BasketItem(2,product2);
-
-        basket.addItem(basketItem);
-        basket.addItem(basketItem2);
+        Product ananas = new Product(12,"Ananas",25);
+        BasketItem anamasItem = new BasketItem(2,ananas);
+        basket.addItem(anamasItem);
 
          int response = basket.calculateBasketPrice();
-
-         assertTrue(response  == 4);
+         assertTrue(response  == 1525);
 
     }
 
