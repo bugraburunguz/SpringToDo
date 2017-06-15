@@ -16,9 +16,14 @@ public class Basket {
     }
 
     public Integer calculateBasketPrice() {
-
         //TODO
+        Integer calculatebasket = 0;
+        for (int i = 0; i < items.size(); i++) {
 
-        return 0;
+            calculatebasket += items.get(i).price();
+
+        }
+
+        return calculatebasket;
     }
 }

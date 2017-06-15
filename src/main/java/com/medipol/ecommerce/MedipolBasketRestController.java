@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MedipolBasketRestController {
 
-    @Autowired private  BasketService basketService;
-    @Autowired private ProductService productService;
+    @Autowired
+    private BasketService basketService;
+    @Autowired
+    private ProductService productService;
 
     @RequestMapping(path = "/addToBasket")
     public Basket addToBasket(@RequestParam int productId, @RequestParam int quantity) {
@@ -26,11 +28,52 @@ public class MedipolBasketRestController {
     }
 
     //createBasket
+    @RequestMapping(path = "/createBasket")
+    public Basket createBasket() {
+
+        basketService.createBasket();
+        return basketService.getBasket();
+
+    }
+
     //getBasketDetail
-    //addToBasket
+    @RequestMapping(path = "/getBasketDetail")
+    public Basket getBasketDetail(@RequestParam int productId, @RequestParam int quantity) {
+
+        Product product = productService.findBy(productId);
+        basketService.addProduct(product, quantity);
+        return basketService.getBasket();
+
+    }
+
     //removeProduct
+
+    @RequestMapping(path = "/removeProduct")
+    public Basket removeProduct(@RequestParam Product productId) {
+        basketService.removeProduct(productId);
+        return basketService.getBasket();
+    }
+
     //incrementQuantity
+    @RequestMapping(path = "/incrementQuantity")
+    public Basket incrementQuantity(@RequestParam Product productId, @RequestParam int quantity) {
+        basketService.incrementQuantity(productId, quantity);
+        return basketService.getBasket();
+    }
+
     //decrementQuantity
+    @RequestMapping(path = "/decrementQuantity")
+    public Basket decrementQuantity(@RequestParam Product productId, @RequestParam int quantity) {
+
+        basketService.decrementQuantity(productId, quantity);
+        return basketService.getBasket();
+    }
+
     //getBasketPrice
+    @RequestMapping(path = "/getBasketPrice")
+    public Basket getBasketPrice() {
+        basketService.printBasketDetail();
+        return basketService.getBasket();
+    }
 
 }

@@ -27,5 +27,15 @@ public class BasketItemTest {
     @Test
     public void shouldCalculatePriceWhenQuantityIsThree() throws Exception {
         //TODO
+
+        final Product salatalik = new Product(123, "Salatalık", 1);
+        final BasketItem basketItem = new BasketItem(3, salatalik);
+
+        //action
+        final Integer result = basketItem.price();
+
+        //verify
+        assertTrue(basketItem.getQuantity() == 3);
+        assertTrue(result == 3);
     }
 }

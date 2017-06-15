@@ -4,6 +4,7 @@ import com.medipol.ecommerce.model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -19,10 +20,10 @@ public class ProductService {
 
     }
 
-    public void add(String name, Integer price ,Integer id ){
+    public void add(String name, Integer price, Integer id) {
         //TODO  ---- Yapıldı
 
-        products.add(new Product(id,name,price));
+        products.add(new Product(id, name, price));
     }
 
     public void delete(Integer id) {
@@ -40,7 +41,7 @@ public class ProductService {
         products.remove(productIndex);
     }
 
-    public Product update(Integer id, String name, Integer price){
+    public Product update(Integer id, String name, Integer price) {
         //TODO ----- Yapıldı
 
 
@@ -49,7 +50,7 @@ public class ProductService {
 
                 products.get(i).setName(name);
                 products.get(i).setPrice(price);
-                return  products.get(i);
+                return products.get(i);
 
             }
 
@@ -58,7 +59,7 @@ public class ProductService {
 
     }
 
-    public Product updateId(Integer id){
+    public Product updateId(Integer id) {
         //TODO ----- Yapıldı
 
 
@@ -67,7 +68,7 @@ public class ProductService {
 
                 products.get(i).setId(id);
 
-                return  products.get(i);
+                return products.get(i);
 
             }
 
@@ -76,7 +77,7 @@ public class ProductService {
 
     }
 
-    public Product updateName(Integer id, String name){
+    public Product updateName(Integer id, String name) {
         //TODO ----- Yapıldı
 
 
@@ -86,7 +87,7 @@ public class ProductService {
 
                 products.get(i).setName(name);
 
-                return  products.get(i);
+                return products.get(i);
 
             }
 
@@ -96,7 +97,7 @@ public class ProductService {
     }
 
 
-    public Product updatePrice(Integer id, Integer price){
+    public Product updatePrice(Integer id, Integer price) {
         //TODO ----- Yapıldı
 
 
@@ -104,7 +105,7 @@ public class ProductService {
             if (id == products.get(i).getId()) {
 
                 products.get(i).setPrice(price);
-                return  products.get(i);
+                return products.get(i);
 
             }
 
@@ -114,20 +115,19 @@ public class ProductService {
     }
 
 
-    public List<Product> list(){
+    public List<Product> list() {
         return products;
     }
 
     public Product findBy(int productId) {
         //TODO ---- Yapıldı
 
-                for (int i = 0; i < products.size(); i++) {
-                    if (products.get(i).getId().equals(productId)) {
-                        return products.get(i);
-                    }
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getId().equals(productId)) {
+                return products.get(i);
+            }
 
-                }
-
+        }
 
 
         return null;
